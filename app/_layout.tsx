@@ -37,10 +37,10 @@ export default function RootLayout() {
     return <h1>1</h1>; 
   }*/
 
-  if (!loaded) {
+  /*if (!loaded) {
     // Async font loading only occurs in development.
     return <h1>2</h1>;
-  }
+  }*/
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
