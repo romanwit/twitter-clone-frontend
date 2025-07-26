@@ -3,7 +3,11 @@ import { View, Text, TextInput, Button, StyleSheet, Alert, Platform } from 'reac
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router'
 
-const BASE_URL = 'http://localhost:3000'; 
+const BASE_URL =
+  Platform.OS === 'android'
+    ? 'http://10.0.2.2:3000'
+    : 'http://localhost:3000';
+
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');

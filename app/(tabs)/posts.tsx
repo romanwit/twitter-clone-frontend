@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, StyleSheet, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { jwtDecode } from 'jwt-decode';
+
+const BASE_URL =
+  Platform.OS === 'android'
+    ? 'http://10.0.2.2:3000'
+    : 'http://localhost:3000';
 
 export default function MyPostsScreen() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -40,7 +45,7 @@ export default function MyPostsScreen() {
 
         console.log(userId);
 
-        const response = await fetch(`http://localhost:3000/posts/author/${userId}`);
+        const response = await fetch(`${BASE_URL}/posts/author/${userId}`);
         if (!response.ok) {
           throw new Error(`Server responded ${response.status}`);
         }
